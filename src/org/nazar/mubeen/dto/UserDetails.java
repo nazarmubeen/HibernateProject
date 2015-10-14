@@ -4,25 +4,26 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity(name="USER_DETAILS")
 public class UserDetails {
 
-	@Id
+	@Id @GeneratedValue
 	@Column(name="user_id")
 	private int userid;
 	@Column(name="user_name")
 	private String username;
-	private String address;
+	private Address address;
 	private Date joineddate;
 	private String description;
-	
-	
-	public String getAddress() {
+
+
+	public Address getAddress() {
 		return address;
 	}
-	public void setAddress(String address) {
+	public void setAddress(Address address) {
 		this.address = address;
 	}
 	public Date getJoineddate() {
