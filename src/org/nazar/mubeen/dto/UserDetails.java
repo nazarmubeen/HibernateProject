@@ -1,11 +1,22 @@
 package org.nazar.mubeen.dto;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+
+import org.hibernate.annotations.CollectionId;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 
 @Entity(name="USER_DETAILS")
 public class UserDetails {
@@ -15,16 +26,24 @@ public class UserDetails {
 	private int userid;
 	@Column(name="user_name")
 	private String username;
-	private Address address;
+	@ElementCollection
+	@JoinTable(name="user_address", joinColumns=@JoinColumn(name="user_id")
+	
+			)
+	@GenericGenerator(name = "hilo-gen", strategy = "hilo")
+	@CollectionId(columns = { @Column(name="address_id") }, generator = "hilo-gen", type = @Type(type="long"))
+	private Collection<Address> listofaddresses=new ArrayList();
+	
 	private Date joineddate;
 	private String description;
 
 
-	public Address getAddress() {
-		return address;
+	
+	public Collection<Address> getListofaddresses() {
+		return listofaddresses;
 	}
-	public void setAddress(Address address) {
-		this.address = address;
+	public void setListofaddresses(Collection<Address> listofaddresses) {
+		this.listofaddresses = listofaddresses;
 	}
 	public Date getJoineddate() {
 		return joineddate;
