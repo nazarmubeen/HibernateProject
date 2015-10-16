@@ -43,12 +43,12 @@ public class HibernateTest {
 		session.getTransaction().commit();
 		session.close();
 		
-		//user=null;
-	//	session=sessionFactory.openSession();
-	//	session.beginTransaction();
-	//	user=(UserDetails)session.get(UserDetails.class, 2);
+	user=null;
+	session=sessionFactory.openSession();
+	session.beginTransaction();
+	user=(UserDetails)session.get(UserDetails.class, 11);
 	//	System.out.println("user name"+user.getUsername());
-		
+	System.out.println(user.getListofaddresses().size());;	
 	}
 
 }
