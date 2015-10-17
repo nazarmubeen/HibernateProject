@@ -54,7 +54,7 @@
 
         <!-- Names the annotated entity class -->
         <mapping class="org.nazar.mubeen.dto.UserDetails" />
-
+		<mapping class="org.nazar.mubeen.dto.Vehicle" />
     </session-factory>
 
 </hibernate-configuration>

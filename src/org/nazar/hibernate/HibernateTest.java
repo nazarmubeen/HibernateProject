@@ -7,6 +7,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.nazar.mubeen.dto.Address;
 import org.nazar.mubeen.dto.UserDetails;
+import org.nazar.mubeen.dto.Vehicle;
 
 public class HibernateTest {
 
@@ -17,38 +18,31 @@ public class HibernateTest {
 		// TODO Auto-generated method stub
 
 		UserDetails user=new UserDetails();
-		UserDetails user2=new UserDetails();
-		Address addr=new Address();
-		Address addr2=new Address();
-		addr.setCity("lucknow");
-		addr.setState("up");
-		addr.setStreet("sss");
-		addr.setPincode("56565");
-		addr2.setCity("lucsaknow");
-		addr2.setState("uppsp");
-		addr2.setStreet("ssx5ss");
-		addr2.setPincode("562565");
+		Vehicle vehicle=new Vehicle();
+		vehicle.setVehiclename("my car");
+		
 		user.setUsername("first user");
 		
 		user.setJoineddate(new Date());
-		
+		user.setVehicle(vehicle);
 		user.setDescription("this is my game");
-	    user.getListofaddresses().add(addr);
-	    user.getListofaddresses().add(addr2);
+	  //  user.getListofaddresses().add(addr);
+	  //  user.getListofaddresses().add(addr2);
 		SessionFactory sessionFactory=new Configuration().configure().buildSessionFactory();
 		Session session=sessionFactory.openSession();
 		session.beginTransaction();
 		session.save(user);
-	
+	    session.save(vehicle);
 		session.getTransaction().commit();
 		session.close();
-		
+	/*	
 	user=null;
 	session=sessionFactory.openSession();
 	session.beginTransaction();
 	user=(UserDetails)session.get(UserDetails.class, 11);
 	//	System.out.println("user name"+user.getUsername());
 	System.out.println(user.getListofaddresses().size());;	
+	*/
 	}
 
 }
